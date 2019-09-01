@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as py
+from sklearn.svm import SVC
+
+#importing dataset
+data="mnist_train.csv"
+datast=pd.read_csv(data)
+print(datast.describe)
+clssfier=SVC()
+
+#training ds
+xtrain=datast[0:10000,1:]
+trainlabel=dataset[0:10000,0]
+
+clssfier.fit(xtrain,trainlabel)
+#testing ds
+xtest=datast[10000:,1:]
+actlabel=datast[10000:,0]
+
+p=clssfier.predict(xtest)
+
+#evaluating accuracy
+
+count=0
+for i in range(0,10000):
+    count+=1 if p[i]==actlabel[i] else 0
+print("Accuracy:",(count/10000)*100)
